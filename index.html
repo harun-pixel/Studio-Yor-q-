@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Yor'q</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-left">
+          <div class="logo">
+            <img src="logo.jpeg" alt="MA Music Studio Logo">
+            <span>Studio Yor'q</span>
+          </div>
+          <nav class="nav-menu">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a style="display: none;" href="#" class="nav-link">Add-ons</a>
+            <a style="display: none;" href="#" class="nav-link">Packages</a>
+            <a href="#kontak" class="nav-link">Contact</a>
+          </nav>
+        </div>
+      
+        <div class="navbar-right">
+          <div style="display: none;" class="language-selector">
+            <img src="USA.png" alt="US Flag">
+            <span>EN</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+      
+          <button class="btn-book-session">Book Session</button>
+      
+          <div class="icon-group">
+            <i class="fas fa-user-circle"></i>
+            <span>Login</span>
+          </div>
+      
+          <a href="#riwayat" class="nav-link riwayat-nav-link" style="display: none;">Riwayat</a>
+      
+          <div style="display: none;" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge">0</span>
+          </div>
+      
+          <!-- Hamburger button -->
+          <button class="hamburger-menu" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </header>
+      
+
+    <!-- Modal Calendar -->
+<div id="calendarModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Schedule your service</h2>
+            <span class="close-calendar-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="selected-package-info">
+                <h3>Selected Package</h3>
+                <div class="package-details">
+                    <p class="package-name"></p>
+                    <p class="package-duration"></p>
+                    <p class="package-price"></p>
+                </div>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prevMonth" class="calendar-nav-btn"><i class="fas fa-chevron-left"></i></button>
+                    <h3 id="currentMonth"></h3>
+                    <button id="nextMonth" class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day-header">Sun</div>
+                    <div class="calendar-day-header">Mon</div>
+                    <div class="calendar-day-header">Tue</div>
+                    <div class="calendar-day-header">Wed</div>
+                    <div class="calendar-day-header">Thu</div>
+                    <div class="calendar-day-header">Fri</div>
+                    <div class="calendar-day-header">Sat</div>
+                    <div id="calendarDays"></div>
+                </div>
+            </div>
+            <div class="availability-info">
+                <p id="availabilityStatus"></p>
+            </div>
+            <button id="checkAvailabilityBtn" class="btn-check-availability">Check Next Availability</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Detail Tiket -->
+<div id="ticketDetailModal" class="modal">
+    <div class="modal-content ticket-modal-content">
+        <div class="modal-header">
+            <h2>Detail Tiket</h2>
+            <span class="close-ticket-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="ticket-container">
+                <div class="ticket-header">
+                    <div class="ticket-logo">
+                        <img src="logo.jpeg" alt="Studio Yor'q Logo">
+                        <span>Studio Yor'q</span>
+                    </div>
+                    <div class="ticket-id" id="ticketBookingId">#BK00000000</div>
+                </div>
+                
+                <div class="ticket-body">
+                    <div class="ticket-event">
+                        <h3 id="ticketPackageName">Thr. Jorn Session</h3>
+                        <div class="ticket-details">
+                            <div class="ticket-detail-row">
+                                <span class="detail-label">Tanggal:</span>
+                                <span class="detail-value" id="ticketDate">-</span>
+                            </div>
+                            <div class="ticket-detail-row">
+                                <span class="detail-label">Waktu:</span>
+                                <span class="detail-value" id="ticketTime">-</span>
+                            </div>
+                            <div class="ticket-detail-row">
+                                <span class="detail-label">Durasi:</span>
+                                <span class="detail-value" id="ticketDuration">-</span>
+                            </div>
+                            <div class="ticket-detail-row">
+                                <span class="detail-label">Total:</span>
+                                <span class="detail-value" id="ticketTotal">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-qr">
+                        <div class="qr-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                            <p>QR Code</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-footer">
+                    <div class="ticket-info">
+                        <p><strong>Informasi Penting:</strong></p>
+                        <ul>
+                            <li>Silakan datang 15 menit sebelum jadwal</li>
+                            <li>Harap membawa bukti pembayaran</li>
+                            <li>Tiket tidak dapat dipindahtangankan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ticket-actions">
+                <button id="printTicketBtn" class="btn-secondary">
+                    <i class="fas fa-print"></i> Print Tiket
+                </button>
+                <button id="downloadTicketBtn" class="btn-primary">
+                    <i class="fas fa-download"></i> Download Tiket
+                </button>
+                <button id="closeTicketModalBtn" class="btn-secondary">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Time Slots -->
+<div id="timeSlotsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Schedule your service</h2>
+            <span class="close-time-slots-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="selected-date-info">
+                <h3>Selected Date</h3>
+                <p id="selectedDateText"></p>
+            </div>
+            <div class="service-details">
+                <h3>Service Details</h3>
+                <div class="service-info">
+                    <p class="service-name">1hr Jam Session</p>
+                    <p class="service-duration">Duration: 1 hour</p>
+                    <button class="btn-more-details">More details</button>
+                </div>
+            </div>
+            <div class="time-slots-container">
+                <h3>Available Time Slots</h3>
+                <div class="time-slots-grid" id="timeSlotsGrid">
+                    <!-- Time slots will be generated by JavaScript -->
+                </div>
+            </div>
+            <div class="booking-actions">
+                <button id="backToCalendarBtn" class="btn-secondary">Back</button>
+                <button id="nextBtn" class="btn-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Checkout -->
+<div id="checkoutModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Checkout</h2>
+            <span class="close-checkout-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="checkout-container">
+                <div class="customer-details">
+                    <h3>Customer details</h3>
+                    <form id="customerForm">
+                        <div class="form-group">
+                            <label for="customerName">Full Name</label>
+                            <input type="text" id="customerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Phone Number</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email</label>
+                            <input type="email" id="customerEmail" name="customerEmail" required>
+                        </div>
+                        <button type="submit" class="btn-save-continue">Save & Continue</button>
+                    </form>
+                </div>
+                <div class="order-summary">
+                    <h3>Order summary</h3>
+                    <div class="order-item">
+                        <div class="order-details">
+                            <p class="order-service" id="orderService">1hr Jam Session</p>
+                            <p class="order-date" id="orderDate">August 31, 2025</p>
+                            <p class="order-time" id="orderTime">9:00 am</p>
+                        </div>
+                        <div class="order-price" id="orderPrice">IDR 150,000.00</div>
+                    </div>
+                    <div class="order-totals">
+                        <div class="order-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">IDR 150,000.00</span>
+                        </div>
+                        <div class="order-row">
+                            <span>Tax</span>
+                            <span id="tax">IDR 0.00</span>
+                        </div>
+                        <div class="order-row total">
+                            <span>Total</span>
+                            <span id="total">IDR 150,000.00</span>
+                        </div>
+                    </div>
+                    <div class="secure-checkout">
+                        <i class="fas fa-lock"></i>
+                        <span>Secure Checkout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Booking Confirmation Page -->
+<div id="confirmationPage" class="confirmation-page">
+    <div class="confirmation-container">
+        <div class="confirmation-header">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Booking Confirmed!</h2>
+            <p>Terima Kasih telah memilih Studio Yor'q</p>
+        </div>
+        
+        <div class="confirmation-content">
+            <div class="booking-details">
+                <h3>Booking Details</h3>
+                <div class="detail-card">
+                    <div class="detail-row">
+                        <div class="detail-label">Booking ID</div>
+                        <div class="detail-value" id="bookingId">#BK20250830001</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Customer Name</div>
+                        <div class="detail-value" id="customerNameConfirm">-</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Phone</div>
+                        <div class="detail-value" id="customerPhoneConfirm">-</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Email</div>
+                        <div class="detail-value" id="customerEmailConfirm">-</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Package</div>
+                        <div class="detail-value" id="packageConfirm">-</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Date</div>
+                        <div class="detail-value" id="dateConfirm">-</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Time</div>
+                        <div class="detail-value" id="timeConfirm">-</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Total Payment</div>
+                        <div class="detail-value" id="totalConfirm">-</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="next-steps">
+                <h3>What's Next?</h3>
+                <div class="steps-card">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Confirmation Call</h4>
+                            <p>Tim kami akan menghubungi Anda dalam waktu 24 jam untuk mengonfirmasi pemesanan dan menjawab pertanyaan apa pun yang mungkin Anda miliki.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Payment Instructions</h4>
+                            <p>Kami akan mengirimkan detail pembayaran melalui WhatsApp atau email. Harap selesaikan pembayaran setidaknya 2 jam sebelum sesi Anda.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Studio Preparation</h4>
+                            <p>Tim kami akan mempersiapkan studio sesuai kebutuhan paket Anda.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Enjoy Your Session</h4>
+                            <p>Datanglah 15 menit sebelum waktu yang dijadwalkan. Staf kami akan membantu Anda dalam persiapan dan memastikan Anda mendapatkan pengalaman rekaman yang luar biasa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h3>Need Assistance?</h3>
+                <p>Jika Anda memiliki pertanyaan atau perlu membuat perubahan pada pemesanan Anda, silakan hubungi kami:</p>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <span>0811-1828-892</span>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>0811-1828-892</span>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@c-promusicstudio.com</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="printBookingBtn" class="btn-secondary">
+                    <i class="fas fa-print"></i> Print Booking
+                </button>
+                <button id="backToHomeBtn" class="btn-primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Login -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Login to Your Account</h2>
+            <span class="close-login-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-message" id="loginFormMessage"></div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Login</button>
+                    <button type="button" id="registerBtn" class="btn-secondary">Register</button>
+                </div>
+                <div class="form-footer">
+                    <p>Belum punya akun? <a href="#" id="registerLink">Daftar di sini</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Registrasi -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Create New Account</h2>
+            <span class="close-register-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" name="name" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" name="email" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" name="password" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-message" id="registerFormMessage"></div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Register</button>
+                    <button type="button" id="loginFromRegisterBtn" class="btn-secondary">Login</button>
+                </div>
+                <div class="form-footer">
+                    <p>Sudah punya akun? <a href="#" id="loginLink">Login di sini</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Riwayat Pembelian Section -->
+<section id="riwayat" class="section riwayat-section" style="display: none;">
+    <div class="container">
+        <h2>Riwayat Pembelian</h2>
+        <div class="riwayat-container">
+            <div class="riwayat-filters">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="upcoming">Akan Datang</button>
+                <button class="filter-btn" data-filter="completed">Selesai</button>
+            </div>
+            <div class="riwayat-list" id="riwayatList">
+                <!-- Riwayat pembelian akan dimuat di sini -->
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+    <section class="hero-section">
+        <!-- PENTING: Pastikan div overlay ini ada di HTML -->
+        <div class="hero-background-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Turn your sound into a masterpiece</p>
+            <p class="hero-subtitle">Studio Yor'q & Live Recording</p>
+            <h1 class="hero-headline">
+                <span class="headline-purple">Got a Song in Mind?</span><span style="color: aliceblue;"><br>We've Got The Studio</span>
+            </h1>
+            <div class="jamming-session-box">
+                <p>Ready to make some noise?</p>
+                <button class="btn-book-session">Book Session</button>
+            </div>
+        </div>
+    </section>
+
+<!-- ========================= -->
+<!-- ABOUT SECTION (TAMBAHAN) -->
+<!-- ========================= -->
+
+    <section id="about" class="section about-section" style="display:none;">
+        <div class="container about-flex-container">
+            <div class="about-image-container">
+                <img src="about1.avif" alt="Interior Studio Yor'q" class="about-main-image">
+                <div class="image-overlay"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-title-wrapper">
+                    <span class="about-line"></span>
+                    <h2 class="about-title">Where Sound Meets Your Soul</h2>
+                </div>
+                <p class="about-subtitle">
+                    Di Studio Yor'q, kami percaya bahwa setiap nada memiliki cerita. Kami berdedikasi untuk menyediakan lingkungan yang sempurna bagi para musisi untuk berkreasi, bereksperimen, dan menyempurnakan karya mereka.
+                </p>
+                <div class="about-value-cards">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Visi Kami</h3>
+                        <p>Menjadi rumah bagi kreativitas musik terdepan, yang memberdayakan artis untuk meraih potensi penuh mereka dengan fasilitas terbaik.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Misi Kami</h3>
+                        <p>Menyediakan peralatan, akustik ruang, dan layanan yang tiada duanya, didukung oleh tim yang profesional, ramah, dan penuh semangat.</p>
+                    </div>
+                </div>
+                <a href="#packages" class="cta-button primary-cta">Lihat Paket Studio</a>
+            </div>
+        </div>
+        
+        <div class="about-vision-mission">
+            <div class="vm-card">
+                <div class="vm-icon">
+                    <i class="fas fa-handshake"></i> </div>
+                <h3 class="vm-title">Nilai-Nilai Inti Kami</h3>
+                <p class="vm-description">
+                    Kami berkomitmen penuh untuk setiap proyek, dari pemilihan alat hingga sentuhan akhir pada mastering. Kami adalah ruang kolaborasi di mana Anda bisa bereksperimen dan berinovasi. Gairah kami terhadap musik mendorong kami untuk terus memberikan yang terbaik.
+                </p>
+            </div>
+            <div class="vm-card">
+                <div class="vm-icon">
+                    <i class="fas fa-star"></i> </div>
+                <h3 class="vm-title">Keunggulan Kami</h3>
+                <p class="vm-description">
+                    Kami percaya bahwa alat adalah perpanjangan dari kreativitas. Di sini, kami menggabungkan peralatan premium dengan keahlian tim kami. Setiap alat yang kami gunakan dipilih untuk satu tujuan: membantu Anda menangkap suara yang paling otentik.
+                </p>
+            </div>
+        </div>
+        
+        <div class="main-studio-section">
+            <div class="studio-image-wrapper">
+                <img src="about2.avif" alt="Main Studio Studio Yor'q" class="main-studio-image">
+            </div>
+            <div class="studio-content">
+                <h3 class="studio-content-title">STUDIO UTAMA</h3>
+                <p class="studio-content-text">
+                    Studio latihan musik kami dirancang dengan cermat untuk kualitas suara yang superior, dilengkapi dengan peredam suara profesional yang menghilangkan gema dan kebisingan yang tidak diinginkan. Dipadukan dengan sistem suara berkualitas tinggi, studio ini menghasilkan audio jernih, memastikan setiap nada dan ketukan terekam dengan detail sempurna. Baik untuk latihan band atau rekaman, ruangan ini menawarkan pengalaman akustik terbaik. Untuk kenyamanan tambahan, tersedia ruang tunggu khusus yang memungkinkan tim Anda mengawasi dan memberikan masukan secara *real-time* tanpa mengganggu sesi Anda.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="welcome-section">
+        <div class="welcome-content-wrapper">
+            <div class="welcome-left-content">
+                <h1 class="welcome-title">Welcome to<br>Studio Yor'q</h1>
+                <p class="welcome-description">Di Studio Yor'q, kami punya semua yang kamu butuhkan untuk bikin musik keren. KENAPA HARUS C-PRO STUDIO? Sarana dan Prasarana di Studio kami memiliki kualitas terbaik dan selalu menjalani perawatan setiap minggunya. Pelayanan yang memuaskan bagi pelanggan, karna kami siap tanggap. Dan Harga sudah pasti terjangkau. Jadi tidak perlu ragu untuk datang. Dari alat-alat yang top sampai ruangan dengan akustik juara, semuanya siap bikin ide-ide musikmu jadi nyata. Nggak peduli kamu solo artist atau nge-band, di sini tempatnya suaramu bener-bener bersinar. Yuk, wujudkan karyamu bareng kami!</p>
+            </div>
+            <div class="welcome-right-content">
+                <div class="image-stack">
+                    <img src="marshalgradient.avif" alt="Amplifier" class="image-amp">
+                    <img src="bass.avif" alt="Guitarist" class="image-guitarist">
+                </div>
+            </div>
+        </div>
+        <div class="vertical-divider top-divider-welcome"></div>
+        <div class="vertical-divider bottom-divider-welcome"></div>
+    </section>
+
+    <!-- Modal Booking -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Choose Product</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="booking-options">
+                <div class="booking-option">
+                    <h3>1 Hour</h3>
+                    <div class="package-details">
+                        <p class="package-name">Thr. Jorn Session</p>
+                        <p class="package-duration">1 hr</p>
+                        <p class="package-price">Rp 150,000</p>
+                        <div class="package-tag">Box Jam Special Package</div>
+                        <button class="btn-select-package">Select</button>
+                    </div>
+                </div>
+
+                <div class="booking-option">
+                    <h3>3 Hours</h3>
+                    <div class="package-details">
+                        <p class="package-name">Thr. Jorn Session</p>
+                        <p class="package-duration">3 hr</p>
+                        <p class="package-price">Rp 400,000</p>
+                        <div class="package-tag">Box Jam Special Package</div>
+                        <button class="btn-select-package">Select</button>
+                    </div>
+                </div>
+
+                <div class="booking-option">
+                    <h3>6 Hours</h3>
+                    <div class="package-details">
+                        <p class="package-name">Half Day Jorn Session</p>
+                        <p class="package-duration">6 hr</p>
+                        <p class="package-price">Rp 700,000</p>
+                        <div class="package-tag">Box Jam Special Package</div>
+                        <button class="btn-select-package">Select</button>
+                    </div>
+                </div>
+
+                <div class="booking-option">
+                    <h3>12 Hours</h3>
+                    <div class="package-details">
+                        <p class="package-name">Full Day Jorn Session</p>
+                        <p class="package-duration">12 hr</p>
+                        <p class="package-price">Rp 1,200,000</p>
+                        <div class="package-tag">Box Jam Special Package</div>
+                        <button class="btn-select-package">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Login Required -->
+<div id="loginRequiredModal" class="modal">
+    <div class="modal-content login-required-content">
+        <div class="modal-header">
+            <h2>Login Required</h2>
+            <span class="close-login-required-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="login-required-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <p class="login-required-message">
+                Anda harus login terlebih dahulu untuk mengakses fitur ini.
+            </p>
+            <div class="login-required-actions">
+                <button id="cancelLoginBtn" class="btn-secondary">Batal</button>
+                <button id="goToLoginBtn" class="btn-primary">Login Sekarang</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <!-- BAGIAN LAYANAN KAMI -->
+    <section id="layanan" class="services-section">
+        <div class="container">
+            <h2>Layanan Kami</h2>
+            <p class="section-subtitle">Butuh apa saja untuk musikmu? <br> Studio Yor'q & Recording siap jadi partner lengkapmu!</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">🎸</div>
+                    <h3>Rehearsal Studio</h3>
+                    <p>Pengen nge-jam atau latihan solo? Studio kami kedap suara dan lengkap dengan alat-alat musik serta sound system jempolan</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">🎧</div>
+                    <h3>Recording Studio</h3>
+                    <p>Yuk, rekam karyamu dengan kualitas studio papan atas! Peralatan premium dan akustik ruang terbaik siap bikin hasil rekamanmu sempurna.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">🎚️</div>
+                    <h3>Mixing & Mastering</h3>
+                    <p>Percayakan hasil rekamanmu pada engineer berpengalaman kami. Kami bantu poles suaramu biar siap rilis dan berkualitas.</p>
+                </div>
+
+                <!-- <div class="service-card">
+                    <div class="icon">🔊</div>
+                    <h3>Sound System</h3>
+                    <p>Kami menyediakan jasa penyewaan sound system untuk acara-acara musik, live show, atau event lainnya.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">🥁</div>
+                    <h3>Sewa Instrument</h3>
+                    <p>Butuh alat musik untuk keperluan rekaman atau latihan? Kami menyewakan berbagai instrumen musik berkualitas.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">🛒</div>
+                    <h3>Jual Alat Musik</h3>
+                    <p>Kami juga melayani penjualan alat-alat musik baru dan bekas, siap memenuhi kebutuhan musikal Anda.</p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- BAGIAN FASILITAS STUDIO (GALERI KOTAK BERWARNA) - SEKARANG SEJARAJA DENGAN SECTION LAIN -->
+    <section class="studio-facilities-gallery-section">
+        <div class="studio-facilities-background-overlay"></div> <!-- Overlay untuk background image -->
+        <h2 class="studio-facilities-title">Fasilitas Studio</h2>
+        <p class="studio-facilities-subtitle">Lihatlah lingkungan dan peralatan yang akan mendukung kreativitas Anda.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item green-bg">
+                <h3></h3>
+                <span class="gallery-text">Recording Room</span>
+            </div>
+            <div class="gallery-item blue-bg">
+                <h3></h3>
+                <span class="gallery-text">Mixing Suite</span>
+            </div>
+            <div class="gallery-item orange-bg">
+                <h3></h3>
+                <span class="gallery-text">Waiting Area</span>
+            </div>
+            <div class="gallery-item purple-bg">
+                <h3></h3>
+                <span class="gallery-text">Vocal Booth</span>
+            </div>
+            <div class="gallery-item o-bg">
+                <h3></h3>
+                <span class="gallery-text">Rehearsal</span>
+            </div>
+            <div class="gallery-item p-bg">
+                <h3></h3>
+                <span class="gallery-text">lounge</span>
+            </div>
+        </div>
+    </section>
+   
+    <!-- BAGIAN TESTIMONI -->
+    <section id="testimoni" class="section testimonials-section">
+        <div class="container">
+            <h2 style="text-align: center;">Apa Kata Klien Kami</h2>
+            <div class="testimonial-carousel">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"studio nya asik bgt recommended buat kalian para pecinta musik . oiya 1 lagi nih ruang tunggu nya di bawah juga ada warkop nya indomie kopi mau panas atau dingin tersedia pokonya ."</p>
+                    <div class="reviewer-info">
+                        <img src="hafif.png" alt="Reviewer Image" class="reviewer-img">
+                        <p class="reviewer-name">Hafif Saputra</p>
+                        <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span> 
+                    </div>
+                    
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Tempat nya nyaman buat acara anak band khusus nya.ada cafe dan jg free WiFi juga"</p>
+                    <div class="reviewer-info">
+                        <img src="Rofiqi.png" alt="Reviewer Image" class="reviewer-img">
+                        <p class="reviewer-name">Rofiqi Gembel</p>
+                        <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Studio yg recommended utk anak band latihan.. ruangannya & alat musiknya..mantappp"</p>
+                    <div class="reviewer-info">
+                        <img src="Tony.png" alt="Reviewer Image" class="reviewer-img">
+                        <p class="reviewer-name">Tony kamhar</p>
+                        <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Langganan oyyyy semoga trus bisa latihan dsni"</p>
+                    <div class="reviewer-info">
+                        <img src="fitri.png" alt="Reviewer Image" class="reviewer-img">
+                        <p class="reviewer-name">fitri yani</p>
+                        <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Studio bagus, harga oke."</p>
+                    <div class="reviewer-info">
+                        <img src="joshua.png" alt="Reviewer Image" class="reviewer-img">
+                        <p class="reviewer-name">Joshua Jati Johan</p>
+                        <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Tempat Bagus Banget Studio Lega"</p>
+                    <div class="reviewer-info">
+                        <img src="lord.png" alt="Reviewer Image" class="reviewer-img">
+                        <p class="reviewer-name">Lord Slown</p>
+                        <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://maps.app.goo.gl/cgvKXoPjWZZCYw7q6" class="cta-button primary-cta">Lihat Semua Ulasan di Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BAGIAN GOOGLE MAPS -->
+    <div class="google-map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63834.53995997143!2d101.43160738774007!3d0.5124388071574878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5a954e262a28f%3A0x2afe622c988c74f7!2sStudio%20Yor&#39;q!5e0!3m2!1sid!2sid!4v1757525661434!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <!-- BAGIAN KONTAK -->
+    <section id="kontak" class="section contact-section">
+        <div class="container">
+            <h2>Hubungi Kami</h2>
+            <br>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <p>Telepon: 08111828892</p>
+                    <p>Alamat: Jl. Contoh No. 123, Jakarta</p>
+                    <p>Jam Operasional: Senin-Sabtu, 12:00 - 00:00</p>
+                    <a href="https://wa.me/08111828892" target="_blank" class="whatsapp-button">Chat via WhatsApp</a>
+                </div>
+                <div class="contact-form">
+                    <h3>Kirim Pesan</h3>
+                    <form id="contactForm" onsubmit="sendToWhatsApp(event)">
+                        <input type="text" name="name" placeholder="Nama Anda" required>
+                        <input type="email" name="email" placeholder="Email Anda" required>
+                        <textarea name="message" rows="5" placeholder="Pesan Anda" required></textarea>
+                        <button type="submit" class="cta-button primary-cta">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <a href="#" class="logo footer-logo">Studio Yor'q</a>
+                <p>Jl.Karet Raya, Ruko No.3 RT.005/RW.006, Kel.Cibodasari,Kec.Cibodas. Kota Tangerang, Tangerang 15138</p>
+                <p>Telepon: 08111828892</p>
+            </div>
+            <div class="social-media-section">
+                <h3>Ikuti Kami</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/erkstudio/" class="social-icon facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-1.1 0-2 .9-2 2v1h3v3h-3v6.95c5.05-.73 9-4.96 9-9.95z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/erk_musicstudio?utm_source=ig_web_button_share_sheet&igsh=MW8wc2FwcGE3ZmdyaQ==" class="social-icon instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2.2a5.6 5.6 0 0 0-5.6 5.6v8.4a5.6 5.6 0 0 0 5.6 5.6h8.4a5.6 5.6 0 0 0 5.6-5.6V7.8a5.6 5.6 0 0 0-5.6-5.6H7.6zm9.2.8a1.2 1.2 0 1 0 0 2.4a1.2 1.2 0 0 0 0-2.4zm-4.6 2a4 4 0 1 0 0 8a4 4 0 0 0 0-8zm0 1.2a2.8 2.8 0 1 1 0 5.6a2.8 2.8 0 0 1 0-5.6z"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@erkmusicstudiorecording5300?si=JR_53EwWpesX7nii" class="social-icon youtube">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.54 6.99c-.27-.92-1.2-1.92-2.85-2.09c-2.4-.24-12.84-.24-15.24 0c-1.65.17-2.58 1.17-2.85 2.09C1.13 8.5 1 12 1 12s.13 3.5.6 5.01c.27.92 1.2 1.92 2.85 2.09c2.4.24 12.84.24 15.24 0c1.65-.17 2.58-1.17 2.85-2.09c.47-1.51.6-5.01.6-5.01s-.13-3.5-.6-5.01zM9.54 15.68V8.32L15.5 12l-5.96 3.68z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p style="text-align: center;">&copy; 2025 Studio Yor'q. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Ubah bagian ini di dalam ticket-detail-modal -->
+<div class="ticket-qr">
+    <div id="qrcode"></div>
+</div>
+
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</body>
+</html>

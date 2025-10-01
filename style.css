@@ -1,0 +1,2699 @@
+/* ==================================== */
+/* GLOBAL STYLING                       */
+/* ==================================== */
+:root {
+    --background-dark: #1a1a1a;
+    --text-primary: #f5f5f5;
+    --accent-purple: #9333ea;
+    --accent-orange: #f97316;
+    --gallery-green: #4CAF50;
+    --gallery-blue: #2196F3;
+    --gallery-orange: #FF9800;
+    --gallery-purple: #9C27B0;
+    --light-gray: #e0e0e0;
+    --onyx: #333333;
+    --dark-charcoal: #222222;
+    --clean-white: #ffffff;
+    --electric-blue: #00bfff;
+}
+
+
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.calendar-day.past-date {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #2d2d2d;
+    position: relative;
+    opacity: 0.6;
+}
+
+.calendar-day.past-date::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #777;
+    transform: translateY(-50%);
+}
+
+.calendar-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 20px;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.navbar-right .nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.navbar-right .nav-link:hover {
+    color: var(--accent-orange);
+}
+/* Responsivitas untuk mobile */
+@media (max-width: 768px) {
+    .navbar-right .riwayat-nav-link {
+        display: none !important;
+    }
+}
+.user-menu {
+    position: relative;
+    margin-left: 1.5rem;
+}
+/* Menutup dropdown saat klik di luar */
+.user-menu.active .user-dropdown {
+    display: block;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Memperbaiki properti latar belakang dan teks */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    background-image: url(gambar1.avif); /* Menggunakan gambar Anda */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* ==================================== */
+/* NAVBAR                               */
+/* ==================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(26, 26, 26, 0.9);
+    z-index: 1000;
+}
+.navbar-left, .navbar-right {
+    display: flex;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-right: 2rem;
+}
+.logo img {
+    height: 40px;
+}
+.nav-menu a {
+    color: var(--text-primary);
+    text-decoration: none;
+    margin-right: 1.5rem;
+    transition: color 0.3s ease;
+}
+.nav-menu a:hover {
+    color: var(--accent-orange);
+}
+.navbar-right > div, .navbar-right > button {
+    margin-left: 1.5rem;
+}
+.language-selector, .icon-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+.language-selector img {
+    height: 15px;
+}
+.btn-book-session {
+    background-color: var(--accent-orange);
+    color: var(--text-primary);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn-book-session:hover {
+    background-color: #f06a0e;
+}
+.cart-icon {
+    position: relative;
+    font-size: 1.5rem;
+}
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--accent-orange);
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Hamburger menu - Sembunyikan di desktop */
+.hamburger-menu {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+/* ==================================== */
+/* HERO SECTION                         */
+/* ==================================== */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center; 
+    padding: 0 5%;
+}
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gunakan warna solid transparan lebih baik daripada filter */
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: -1;
+}
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding-top: 10rem;
+}
+.hero-subtitle {
+    font-size: 2.1rem;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+}
+.hero-headline {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 1rem 0;
+}
+.headline-purple {
+    color: var(--accent-purple);
+}
+.jamming-session-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0003258C;
+    padding: 1.5rem 3rem;
+    border-radius: 9999px;
+    margin-top: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.jamming-session-box p {
+    font-size: 1.5rem; 
+    font-weight: 400;
+    margin-right: 1rem;
+}
+.jamming-session-box .btn-book-session {
+    padding: 1rem 2rem; 
+    font-size: 1rem; 
+}
+
+/* ==================================== */
+/* WELCOME SECTION                      */
+/* ==================================== */
+.welcome-section {
+    position: relative;
+    background-color: var(--background-dark); /* Menggunakan warna gelap global */
+    background-image: url(gambarsat.png);
+    background-repeat: no-repeat;
+    display: flex;
+    background-size: 1600px;
+    align-items: center;
+    min-height: 80vh; /* Tinggi minimum untuk section ini */
+    overflow: hidden; /* Memastikan tidak ada overflow */
+}
+.welcome-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Memisahkan konten kiri dan kanan */
+    max-width: 1200px; /* Lebar maksimum konten, konsisten dengan hero section */
+    width: 100%;
+    margin: 0 auto; /* Menengahkan wrapper */
+    gap: 4rem; /* Jarak antara teks dan gambar */
+}
+.welcome-left-content {
+    flex: 1; /* Mengambil ruang yang tersedia */
+    max-width: 60%; /* Sesuaikan lebar maksimum teks */
+    text-align: left;
+}
+.welcome-title {
+    font-size: 3.5rem; /* Ukuran font besar untuk judul */
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+.welcome-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e0e0e0; /* Warna abu-abu terang untuk deskripsi */
+}
+.welcome-right-content {
+    flex: 1; /* Mengambil ruang yang tersedia */
+    position: relative;
+    display: flex;
+    justify-content: center; /* Menengahkan gambar di containernya */
+    align-items: center;
+    min-height: 400px; /* Memastikan ada ruang untuk gambar */
+}
+.image-stack {
+    position: relative;
+    width: 100%; /* Mengambil lebar penuh dari containernya */
+    max-width: 500px; /* Membatasi ukuran keseluruhan tumpukan gambar */
+    height: 450px; /* Tinggi tetap untuk area tumpukan gambar */
+}
+.image-stack img {
+    position: absolute;
+    border-radius: 1rem; /* Sudut melengkung */
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Shadow lembut */
+}
+.image-guitarist { /* Gambar latar belakang yang lebih besar */
+    width: 90%; /* Disesuaikan untuk tampilan */
+    height: 90%; /* Disesuaikan untuk tampilan */
+    top: 0;
+    left: 90px; /* Disesuaikan untuk tampilan */
+    z-index: 1;
+    filter: grayscale(100%); /* Hitam putih */
+}
+.image-amp { /* Gambar depan yang lebih kecil */
+    width: 60%;
+    height: 45%;
+    top: 30%; /* Posisikan lebih rendah dan tumpang tindih */
+    left: -12%; /* Offset ke kiri */
+    z-index: 2;
+    background-color: #550055; /* Warna ungu solid untuk placeholder */
+    filter: brightness(0.7); /* Sedikit lebih gelap untuk kontras jika gambar asli digunakan */
+}
+/* Garis Pembatas Vertikal untuk Welcome Section */
+.vertical-divider {
+    position: absolute;
+    background-color: var(--accent-purple);
+    width: 5px;
+    height: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50; /* Memastikan berada di atas konten lain */
+}
+.top-divider-welcome {
+    top: 0; /* Posisikan di paling atas section */
+}
+.bottom-divider-welcome {
+    bottom: 0; /* Posisikan di paling bawah section */
+}
+
+/* ==================================== */
+/* OUR FACILITY SECTION                 */
+/* ==================================== */
+.facility-section {
+    position: relative;
+    background-color: var(--background-dark); /* Menggunakan warna gelap global */
+    padding: 80px 5%; /* Padding atas/bawah dan samping */
+    display: flex;
+    flex-direction: column; /* Konten ditumpuk secara vertikal */
+    align-items: center; /* Menengahkan konten horizontal */
+    text-align: center; /* Teks di tengah */
+    min-height: 80vh; /* Tinggi minimum untuk section ini */
+    overflow: hidden; /* Memastikan tidak ada overflow */
+}
+.facility-title {
+    font-size: 3.5rem; /* Ukuran font besar untuk judul */
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    position: relative; /* Untuk garis vertikal ungu di atas judul */
+}
+/* Garis ungu di atas dan bawah judul Our Facility */
+.facility-title::before {
+    content: '';
+    position: absolute;
+    top: -40px; /* Posisi di atas judul */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 30px; /* Tinggi garis */
+    background-color: var(--accent-purple);
+}
+.facility-image-container {
+    width: 100%;
+    max-width: 1000px; /* Lebar maksimum gambar */
+    margin-bottom: 2rem;
+    border-radius: 1rem; /* Sudut melengkung */
+    overflow: hidden; /* Memastikan gambar tidak keluar dari radius */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Shadow lembut */
+}
+.facility-main-image {
+    width: 100%;
+    height: auto;
+    display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+    object-fit: cover;
+}
+.facility-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e0e0e0; /* Warna abu-abu terang untuk deskripsi */
+    max-width: 900px; /* Lebar maksimum paragraf */
+    margin: 0 auto; /* Menengahkan paragraf */
+}
+/* Garis Pembatas Vertikal untuk Facility Section */
+.top-divider-facility {
+    top: 0; /* Posisikan di paling atas section */
+}
+.bottom-divider-facility {
+    bottom: 0; /* Posisikan di paling bawah section */
+}
+
+/* ==================================== */
+/* LAYANAN KAMI SECTION                 */
+/* ==================================== */
+.services-section {
+    padding: 80px 5%; /* Padding atas/bawah dan samping */
+    text-align: center; /* Teks di tengah */
+}
+.services-section h2 {
+    font-size: 2.5em; /* Ukuran font h2 */
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-primary); /* Pastikan warna teks benar */
+}
+.container { /* Container untuk mengatur lebar konten */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Padding samping dalam container */
+}
+.section-subtitle {
+    color: var(--light-gray); /* Menggunakan variabel warna */
+    max-width: 600px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+.services-grid {
+    display: grid;
+    /* Ini akan membuat 2 atau 3 kolom di desktop, dan 1 kolom di mobile */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Jarak antar card */
+    text-align: center;
+}
+.service-card {
+    background-color: rgba(0, 3, 37, 0.7); /* Menggunakan warna gelap dengan transparansi */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    color: var(--text-primary); /* Pastikan teks di card berwarna putih */
+}
+.service-card:hover {
+    transform: translateY(-10px);
+}
+.service-card .icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: var(--electric-blue); /* Menggunakan variabel warna */
+}
+.service-card h3 {
+    font-family: 'Inter', sans-serif; /* Menggunakan font Inter */
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-primary); /* Pastikan warna teks judul card */
+}
+.service-card p {
+    font-family: 'Inter', sans-serif; /* Menggunakan font Inter */
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #e0e0e0; /* Warna teks deskripsi card */
+}
+
+/* ==================================== */
+/* FASILITAS STUDIO (GALLERY)           */
+/* ==================================== */
+.studio-facilities-gallery-section {
+    position: relative;
+    background-image: url(latar.avif);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #0003258C;
+    background-image: url(gambar1.avif);
+    padding: 80px 5%;
+    text-align: center;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.studio-facilities-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+}
+.studio-facilities-title,
+.studio-facilities-subtitle,
+.gallery-grid {
+    position: relative;
+    z-index: 1;
+}
+.studio-facilities-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+.studio-facilities-subtitle {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 3rem;
+    max-width: 700px;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+/* Perbaikan untuk kelas umum .gallery-item */
+.gallery-item {
+    background-color: #333;
+    color: var(--text-primary);
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    height: 200px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    
+    /* Properti baru untuk gambar latar belakang */
+    background-size: cover; /* Penting: Gambar akan menutupi seluruh area div */
+    background-position: center; /* Gambar akan dipusatkan */
+    background-repeat: no-repeat; /* Gambar tidak akan berulang */
+    position: relative; /* Diperlukan untuk overlay dan efek visual lainnya */
+    overflow: hidden; /* Menyembunyikan bagian gambar yang terpotong */
+}
+
+.gallery-text {
+    position: absolute; /* Posisikan teks secara absolut di dalam item */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Pusatkan teks */
+    color: var(--text-primary);
+    font-size: 1.8rem; /* Ukuran teks yang sedikit lebih besar */
+    font-weight: 700;
+    opacity: 0; /* Sembunyikan secara default */
+    transition: opacity 0.3s ease-in-out; /* Transisi untuk efek muncul */
+    z-index: 3; /* Pastikan teks di atas overlay */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Tambah bayangan yang lebih kuat */
+    pointer-events: none; /* Agar tidak menghalangi event hover pada item */
+}
+
+
+
+/* Efek hover yang ditingkatkan */
+.gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+}
+
+.gallery-item:hover .gallery-text {
+    opacity: 0.5; /* Muncul saat di-hover */
+}
+
+/* Style untuk teks di dalam div agar mudah dibaca */
+.gallery-item h3 {
+    margin: 0;
+    color: var(--text-primary); /* Pastikan warna teks cocok dengan latar belakang */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Tambahkan bayangan agar teks lebih jelas */
+    z-index: 2; /* Pastikan teks berada di atas overlay */
+}
+
+/* Overlay untuk efek transisi dan kontras teks */
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Gelapkan gambar sedikit */
+    transition: background 0.3s ease-in-out;
+    z-index: 1; /* Di bawah teks, di atas gambar */
+}
+
+.gallery-item:hover::before {
+    background: rgba(0, 0, 0, 0.4); /* Gelapkan lebih lanjut saat di-hover */
+}
+
+/* Penggunaan gambar latar belakang untuk masing-masing studio */
+/* Penting: Pastikan path gambar sudah benar */
+.gallery-item.green-bg { background-image: url('studio1.png'); }
+.gallery-item.blue-bg { background-image: url('studio2.png'); }
+.gallery-item.orange-bg { background-image: url('studio3.png'); }
+.gallery-item.purple-bg { background-image: url('studio4.png'); }
+.gallery-item.o-bg { background-image: url('studio5.png'); }
+.gallery-item.p-bg { background-image: url('studio6.png'); }
+/* ==================================== */
+/* TESTIMONIALS SECTION                 */
+/* ==================================== */
+.testimonials-section {
+    background-color: var(--background-dark);
+    padding: 80px 5%;
+}
+.testimonials-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+.testimonial-carousel {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto; /* Memungkinkan scrolling horizontal */
+    padding-bottom: 20px;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--accent-orange) var(--background-dark);
+}
+/* Kustomisasi scrollbar untuk WebKit (Chrome, Safari) */
+.testimonial-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+.testimonial-carousel::-webkit-scrollbar-track {
+    background: var(--onyx);
+    border-radius: 10px;
+}
+.testimonial-carousel::-webkit-scrollbar-thumb {
+    background-color: var(--accent-orange);
+    border-radius: 10px;
+    border: 2px solid var(--onyx);
+}
+.testimonial-card {
+    flex: 0 0 320px; /* flex-grow: 0, flex-shrink: 0, flex-basis: 320px */
+    height: 280px; /* Tinggi tetap untuk kartu */
+    background-color: var(--onyx);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: var(--light-gray);
+    display: flex;
+    flex-direction: column;;
+}
+.testimonial-text {
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 10px; /* Mengurangi margin untuk memberi lebih banyak ruang bagi teks */
+    flex-grow: 1; /* Memungkinkan teks mengambil ruang yang tersedia */
+    overflow-y: auto; /* Memungkinkan scrolling vertikal jika teks terlalu panjang */
+    padding-right: 5px; /* Sedikit padding untuk scrollbar */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--accent-orange) var(--onyx);
+}
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: auto; /* Mendorong reviewer-info dan bintang ke bawah */
+    margin-bottom: 5px;
+}
+.reviewer-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-purple);
+}
+.reviewer-name {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.testimonial-card span {
+    color: gold;
+    font-size: 1.2em;
+}
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-orange);
+    color: var(--text-primary);
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.cta-button:hover {
+    background-color: #f06a0e;
+}
+
+/* ==================================== */
+/* CONTACT SECTION                      */
+/* ==================================== */
+.contact-section {
+    background-color: var(--dark-charcoal);
+    padding: 80px 5%;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+    max-width: 1200px;
+    margin: 0 auto 10px;
+}
+.contact-info, .contact-form {
+    padding: 30px;
+    background-image: url(latar.avif);
+    background-color: var(--background-dark);
+    background-color: var(--onyx);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.contact-info h3, .contact-form h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+.contact-info p {
+    margin-bottom: 10px;
+    color: var(--light-gray);
+}
+.whatsapp-button {
+    display: inline-block;
+    background-color: #25D366;
+    color: var(--clean-white);
+    padding: 12px 25px;
+    border-radius: 5px;
+    margin-top: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.whatsapp-button:hover {
+    background-color: #128C7E;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--background-dark);
+    background-color: var(--background-dark);
+    color: var(--clean-white);
+    border-radius: 5px;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--light-gray);
+}
+.contact-form button {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+.google-map-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 400px;
+    background-color: var(--onyx);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.google-map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ==================================== */
+/* FOOTER                               */
+/* ==================================== */
+.footer {
+    color: var(--light-gray);
+    padding: 5px 5%;
+}
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.footer-info {
+    margin-bottom: 20px;
+}
+.footer-logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+.footer-info p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.social-media-section {
+    margin:0%;
+}
+.social-media-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #555;
+    border-radius: 50%;
+    color: #fff;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.social-icon svg {
+    width: 24px;
+    height: 24px;
+}
+.social-icon:hover {
+    transform: translateY(-5px);
+}
+.social-icon.facebook:hover { background-color: #3b5998; }
+.social-icon.instagram:hover { background-color: #e1306c; }
+.social-icon.youtube:hover { background-color: #ff0000; }
+.footer-bottom {
+    border-top: 1px solid var(--dark-charcoal);
+    padding-top: 20px;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* ==================================== */
+/* ABOUT SECTION STYLING                */
+/* ==================================== */
+.about-section {
+    background-color: var(--background-dark);
+    padding: 100px 5%;
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-flex-container {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: auto;
+    flex-wrap: wrap;
+}
+.about-image-container {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    padding-bottom: 2rem;
+    padding-right: 2rem;
+}
+.about-main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 90%;
+    height: 90%;
+    background-color: #1a0026;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    border-radius: 1rem;
+    z-index: 1;
+    opacity: 0.8;
+}
+/* Efek Hover */
+.about-image-container:hover .about-main-image {
+    transform: translateY(-10px) translateX(-10px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(147, 51, 234, 0.7);
+}
+.about-content {
+    flex: 1.5;
+    min-width: 400px;
+}
+.about-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.about-line {
+    width: 30px;
+    height: 3px;
+    background-color: var(--accent-purple);
+}
+.about-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--accent-orange);
+}
+.about-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #dcdcdc;
+    margin-bottom: 2rem;
+}
+.about-value-cards {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.value-card {
+    background-color: rgba(0, 3, 37, 0.7);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(147, 51, 234, 0.5);
+}
+.value-icon {
+    font-size: 1.5rem;
+    color: var(--accent-purple);
+    margin-bottom: 1rem;
+}
+.value-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.value-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+}
+.about-vision-mission {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 3rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.vm-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    background-color: transparent;
+}
+.vm-icon {
+    font-size: 2.5rem;
+    color: var(--accent-purple);
+    margin-bottom: 1rem;
+    position: relative;
+    border: 3px solid var(--accent-purple);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vm-icon::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--background-dark);
+    border-radius: 50%;
+    z-index: -1;
+}
+.vm-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+.vm-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+.main-studio-section {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.studio-image-wrapper {
+    flex: 1;
+    min-width: 400px;
+}
+.main-studio-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.studio-content {
+    flex: 1;
+}
+.studio-content-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-orange);
+    margin-bottom: 1rem;
+    position: relative;
+}
+.studio-content-title::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-purple);
+}
+.studio-content-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* ==================================== */
+/* MODAL BOOKING STYLES                 */
+/* ==================================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 5px 30px rgba(147, 51, 234, 0.3);
+    position: relative;
+    animation: modalFadeIn 0.3s;
+}
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+.modal-header {
+    background: linear-gradient(135deg, #9333ea 0%, #1a1a1a 100%);
+    padding: 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header h2 {
+    color: white;
+    margin: 0;
+    font-size: 1.8rem;
+}
+.close-modal {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.close-modal:hover {
+    color: #f97316;
+}
+.modal-body {
+    padding: 30px;
+}
+.booking-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+.booking-option {
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #3d3d3d;
+}
+.booking-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(147, 51, 234, 0.2);
+}
+.booking-option h3 {
+    color: #f97316;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    text-align: center;
+    border-bottom: 2px solid #9333ea;
+    padding-bottom: 10px;
+}
+.package-details {
+    text-align: center;
+}
+.package-name {
+    color: #ffffff;
+    font-weight: 600;
+    margin: 10px 0 5px;
+}
+.package-duration {
+    color: #cccccc;
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+.package-price {
+    color: #f97316;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+.package-tag {
+    display: inline-block;
+    background-color: #9333ea;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin: 10px 0;
+}
+.btn-select-package {
+    background-color: #f97316;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+.btn-select-package:hover {
+    background-color: #e1620e;
+}
+
+/* Modal Calendar Styles */
+#calendarModal .modal-content {
+    max-width: 600px;
+}
+#calendarModal .modal-header {
+    background: linear-gradient(135deg, #f97316 0%, #1a1a1a 100%);
+}
+.selected-package-info {
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.selected-package-info h3 {
+    color: #f97316;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+.selected-package-info .package-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.selected-package-info .package-name {
+    color: #ffffff;
+    font-weight: 600;
+}
+.selected-package-info .package-duration {
+    color: #cccccc;
+    font-size: 0.9rem;
+}
+.selected-package-info .package-price {
+    color: #f97316;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.calendar-container {
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.calendar-header h3 {
+    color: #ffffff;
+    margin: 0;
+    font-size: 1.2rem;
+}
+.calendar-nav-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.calendar-nav-btn:hover {
+    background-color: #3d3d3d;
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+.calendar-day-header {
+    color: #cccccc;
+    text-align: center;
+    font-weight: 600;
+    padding: 5px 0;
+    font-size: 0.9rem;
+}
+#calendarDays {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #ffffff;
+}
+.calendar-day:hover {
+    background-color: #3d3d3d;
+}
+.calendar-day.other-month {
+    color: #777;
+}
+.calendar-day.selected {
+    background-color: #9333ea;
+}
+.calendar-day.unavailable {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #2d2d2d;
+    position: relative;
+}
+
+.calendar-day.unavailable::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #777;
+    transform: translateY(-50%);
+}
+
+
+.calendar-day.unavailable:hover {
+    background-color: #2d2d2d;
+}
+.availability-info {
+    margin-bottom: 20px;
+    min-height: 30px;
+}
+#availabilityStatus {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.btn-check-availability {
+    background-color: #f97316;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+.btn-check-availability:hover {
+    background-color: #e1620e;
+}
+
+/* Modal Time Slots Styles */
+#timeSlotsModal .modal-content {
+    max-width: 600px;
+}
+#timeSlotsModal .modal-header {
+    background: linear-gradient(135deg, #9333ea 0%, #1a1a1a 100%);
+}
+.selected-date-info {
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.selected-date-info h3 {
+    color: #f97316;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+#selectedDateText {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin: 0;
+}
+.service-details {
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.service-details h3 {
+    color: #f97316;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+.service-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.service-name {
+    color: #ffffff;
+    font-weight: 600;
+    margin: 0;
+}
+.service-duration {
+    color: #cccccc;
+    font-size: 0.9rem;
+    margin: 0;
+}
+.btn-more-details {
+    background: none;
+    border: none;
+    color: #9333ea;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 5px 0;
+    text-align: left;
+    width: fit-content;
+}
+.btn-more-details:hover {
+    text-decoration: underline;
+}
+.time-slots-container {
+    margin-bottom: 20px;
+}
+.time-slots-container h3 {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+.time-slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+.time-slot {
+    background-color: #3d3d3d;
+    border: 1px solid #4d4d4d;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.time-slot:hover {
+    background-color: #4d4d4d;
+    border-color: #5d5d5d;
+}
+.time-slot.selected {
+    background-color: #9333ea;
+    border-color: #9333ea;
+}
+.time-slot.unavailable {
+    background-color: #2d2d2d;
+    color: #777;
+    cursor: not-allowed;
+    opacity: 0.7;
+    border: 1px dashed #444;
+}
+.time-slot.unavailable:hover {
+    background-color: #2d2d2d;
+    border-color: #4d4d4d;
+    transform: none;
+}
+.time-slot.unavailable small {
+    font-size: 0.7rem;
+    color: #ff6b6b;
+    margin-top: 2px;
+}
+.booking-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.btn-secondary {
+    background-color: #4d4d4d;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    flex: 1;
+    transition: background-color 0.3s;
+}
+.btn-secondary:hover {
+    background-color: #5d5d5d;
+}
+.btn-primary {
+    background-color: #f97316;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    flex: 1;
+    transition: background-color 0.3s;
+}
+.btn-primary:hover {
+    background-color: #e1620e;
+}
+
+/* Modal Checkout Styles */
+#checkoutModal .modal-content {
+    max-width: 900px;
+}
+#checkoutModal .modal-header {
+    background: linear-gradient(135deg, #f97316 0%, #1a1a1a 100%);
+}
+.checkout-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+.customer-details, .order-summary {
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    padding: 20px;
+}
+.customer-details h3, .order-summary h3 {
+    color: #f97316;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #3d3d3d;
+    padding-bottom: 10px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    color: #ffffff;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #4d4d4d;
+    border-radius: 5px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-size: 1rem;
+}
+.form-group input:focus {
+    outline: none;
+    border-color: #9333ea;
+    box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.2);
+}
+.btn-save-continue {
+    background-color: #9333ea;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+.btn-save-continue:hover {
+    background-color: #7e22ce;
+}
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #3d3d3d;
+}
+.order-details p {
+    margin: 0 0 5px 0;
+    color: #cccccc;
+}
+.order-service {
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.order-price {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.order-totals {
+    margin-top: 20px;
+}
+.order-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #cccccc;
+}
+.order-row.total {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #3d3d3d;
+}
+.secure-checkout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    color: #4dff4d;
+    font-weight: 600;
+}
+.secure-checkout i {
+    margin-right: 8px;
+}
+
+/* Confirmation Page Styles */
+.confirmation-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    z-index: 3000;
+    overflow-y: auto;
+}
+.confirmation-container {
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: var(--background-dark);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.confirmation-header {
+    background: linear-gradient(135deg, #9333ea 0%, #1a1a1a 100%);
+    padding: 40px 30px;
+    text-align: center;
+}
+.success-icon {
+    font-size: 4rem;
+    color: #4dff4d;
+    margin-bottom: 20px;
+}
+.confirmation-header h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+.confirmation-header p {
+    color: #e0e0e0;
+    font-size: 1.2rem;
+}
+.confirmation-content {
+    padding: 30px;
+}
+.booking-details, .next-steps, .contact-info {
+    margin-bottom: 30px;
+}
+.booking-details h3, .next-steps h3, .contact-info h3 {
+    color: var(--accent-orange);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+.booking-details h3::after, .next-steps h3::after, .contact-info h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-purple);
+}
+.detail-card, .steps-card {
+    background-color: rgba(0, 3, 37, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.detail-row:last-child {
+    border-bottom: none;
+}
+.detail-label {
+    color: #cccccc;
+    font-weight: 500;
+}
+.detail-value {
+    color: white;
+    font-weight: 600;
+}
+.step-item {
+    display: flex;
+    margin-bottom: 20px;
+}
+.step-item:last-child {
+    margin-bottom: 0;
+}
+.step-number {
+    width: 30px;
+    height: 30px;
+    background-color: var(--accent-purple);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+.step-content h4 {
+    color: white;
+    margin-bottom: 5px;
+}
+.step-content p {
+    color: #cccccc;
+    line-height: 1.5;
+}
+.contact-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+.contact-method {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 3, 37, 0.7);
+    padding: 10px 15px;
+    border-radius: 30px;
+}
+.contact-method i {
+    margin-right: 10px;
+    color: var(--accent-orange);
+}
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+.btn-secondary, .btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-secondary {
+    background-color: #4d4d4d;
+    color: white;
+    border: none;
+}
+.btn-secondary:hover {
+    background-color: #5d5d5d;
+}
+.btn-primary {
+    background-color: var(--accent-orange);
+    color: white;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #e1620e;
+}
+
+/* Modal Login Styles */
+#loginModal .modal-content {
+    max-width: 500px;
+}
+#loginModal .modal-header {
+    background: linear-gradient(135deg, #9333ea 0%, #1a1a1a 100%);
+}
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Modal Registrasi Styles */
+#registerModal .modal-content {
+    max-width: 500px;
+}
+#registerModal .modal-header {
+    background: linear-gradient(135deg, #f97316 0%, #1a1a1a 100%);
+}
+/* Error Messages */
+.error-message {
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+.form-group.error input {
+    border-color: #ff4d4d;
+}
+.form-group.error input:focus {
+    box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.2);
+}
+/* Form Message Styles */
+.form-message {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+}
+.form-message.error {
+    background-color: rgba(255, 77, 77, 0.2);
+    color: #ff4d4d;
+    border: 1px solid rgba(255, 77, 77, 0.5);
+}
+.form-message.success {
+    background-color: rgba(77, 255, 77, 0.2);
+    color: #4dff4d;
+    border: 1px solid rgba(77, 255, 77, 0.5);
+}
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.form-footer p {
+    color: #ccc;
+    margin: 0;
+}
+.form-footer a {
+    color: var(--accent-purple);
+    text-decoration: none;
+    font-weight: 500;
+}
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Riwayat Section Styles */
+.riwayat-section {
+    background-color: var(--background-dark);
+    padding: 80px 5%;
+    min-height: 100vh;
+}
+.riwayat-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.riwayat-filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.filter-btn {
+    background-color: rgba(147, 51, 234, 0.2);
+    color: var(--text-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--accent-purple);
+    color: white;
+}
+.riwayat-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.riwayat-card {
+    background-color: rgba(0, 3, 37, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+.riwayat-card:hover {
+    transform: translateY(-5px);
+}
+.riwayat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.riwayat-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-orange);
+}
+.riwayat-card-status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.status-upcoming {
+    background-color: rgba(249, 115, 22, 0.2);
+    color: var(--accent-orange);
+}
+.status-completed {
+    background-color: rgba(77, 255, 77, 0.2);
+    color: #4dff4d;
+}
+.riwayat-card-details {
+    margin-bottom: 15px;
+}
+.riwayat-card-detail {
+    display: flex;
+    margin-bottom: 8px;
+}
+.riwayat-card-detail-label {
+    width: 100px;
+    color: #cccccc;
+}
+.riwayat-card-detail-value {
+    color: white;
+    font-weight: 500;
+}
+.riwayat-card-actions {
+    display: flex;
+    gap: 10px;
+}
+.riwayat-card-btn {
+    flex: 1;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.btn-view {
+    background-color: rgba(147, 51, 234, 0.2);
+    color: var(--accent-purple);
+}
+.btn-view:hover {
+    background-color: var(--accent-purple);
+    color: white;
+}
+.btn-download {
+    background-color: rgba(77, 255, 77, 0.2);
+    color: #4dff4d;
+}
+.btn-download:hover {
+    background-color: #4dff4d;
+    color: white;
+}
+
+/* User Menu Styles */
+.user-menu {
+    position: relative;
+    margin-left: 1.5rem;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 30px;
+    background-color: rgba(147, 51, 234, 0.2);
+    transition: background-color 0.3s ease;
+}
+.user-info:hover {
+    background-color: rgba(147, 51, 234, 0.4);
+}
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--accent-purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+}
+.user-name {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--background-dark);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 200px;
+    z-index: 100;
+    display: none;
+}
+.user-dropdown.active {
+    display: block;
+}
+.user-dropdown-item {
+    padding: 12px 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+.user-dropdown-item:hover {
+    background-color: rgba(147, 51, 234, 0.2);
+}
+.user-dropdown-item i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .confirmation-page, .confirmation-page * {
+        visibility: visible;
+    }
+    
+    .confirmation-page {
+        position: static;
+        background-color: white;
+        color: black;
+    }
+    
+    .confirmation-container {
+        box-shadow: none;
+        margin: 0;
+        max-width: 100%;
+    }
+    
+    .action-buttons {
+        display: none;
+    }
+    
+    .confirmation-header {
+        background: linear-gradient(135deg, #9333ea 0%, #1a1a1a 100%);
+        color: white;
+    }
+    
+    .detail-card, .steps-card {
+        background-color: white;
+        color: black;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .detail-label, .detail-value, .step-content h4, .step-content p {
+        color: black;
+    }
+}
+
+/* ==================================== */
+/* RESPONSIVENESS                       */
+/* ==================================== */
+/* Laptop & Tablet */
+@media (max-width: 1024px) {
+    .navbar-right { gap: 1rem; }
+    .hero-section { height: auto; padding-top: 80px; min-height: 80vh; }
+    .hero-headline { font-size: 3rem; }
+    .jamming-session-box { padding: 1rem 2rem; }
+    .jamming-session-box p { font-size: 1.2rem; }
+    /* Welcome Section Tablet */
+    .welcome-content-wrapper { flex-direction: column; gap: 2rem; text-align: center; }
+    .welcome-left-content { max-width: 90%; text-align: center; }
+    .welcome-title { font-size: 2.8rem; }
+    .welcome-description { font-size: 1rem; }
+    .welcome-right-content { min-height: 350px; }
+    .image-stack { height: 400px; }
+    .image-amp { left: -5%; }
+    .vertical-divider { display: none; }
+    .facility-section { padding: 60px 3%; }
+    .facility-title { font-size: 2.8rem; }
+    .facility-title::before { height: 25px; top: -30px; }
+    .facility-description { font-size: 1rem; }
+    /* Layanan Kami Tablet */
+    .services-section { padding: 60px 3%; }
+    .services-section h2 { font-size: 2.2em; }
+    .section-subtitle { font-size: 0.95rem; }
+    .services-grid { gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .service-card { padding: 30px; }
+    .service-card .icon { font-size: 2.5em; }
+    /* Fasilitas Studio Gallery Tablet */
+    .studio-facilities-gallery-section { padding: 60px 3%; }
+    .studio-facilities-title { font-size: 2.8rem; }
+    .studio-facilities-subtitle { font-size: 1rem; margin-bottom: 2rem; }
+    .gallery-grid { gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .gallery-item { height: 180px; font-size: 1.2rem; }
+    
+    /* Testimonials Tablet */
+    .testimonial-card { min-width: 250px; padding: 25px; }
+    .testimonial-text { font-size: 0.9rem; }
+    .reviewer-img { width: 45px; height: 45px; }
+    
+    /* Contact Tablet */
+    .contact-grid { grid-template-columns: 1fr; }
+    
+    /* Footer Tablet */
+    .footer-info { width: 100%; }
+}
+/* Mobile */
+@media (max-width: 768px) {
+    /* Navbar Mobile */
+    .navbar { padding: 1rem; }
+    .navbar-left .nav-menu, .navbar-right .language-selector, .navbar-right .icon-group, .navbar-right .btn-book-session { display: none; }
+    .hamburger-menu { display: block; }
+    .navbar-right { gap: 1rem; margin-left: auto; }
+    /* Hero Section Mobile */
+    .hero-section { padding: 0 1rem; justify-content: center; text-align: center; height: auto; min-height: 80vh; padding-top: 80px; }
+    .hero-content { max-width: 100%; align-items: center; padding-top: 0; }
+    .hero-subtitle { font-size: 1.2rem; text-align: center; }
+    .hero-headline { font-size: 2.5rem; text-align: center; }
+    .jamming-session-box { flex-direction: column; padding: 1rem; max-width: 90%; border-radius: 2rem; margin: 1.5rem auto 0; justify-content: center; align-items: center; }
+    .jamming-session-box p { font-size: 1.2rem; margin-bottom: 0.75rem; margin-right: 0; text-align: center; }
+    .jamming-session-box .btn-book-session { width: 90%; font-size: 0.9rem; padding: 0.8rem 1.5rem; }
+    /* Welcome Section Mobile */
+    .welcome-section { padding: 60px 1rem; min-height: auto; }
+    .welcome-title { font-size: 2rem; }
+    .welcome-description { font-size: 0.9rem; }
+    .welcome-right-content { min-height: 250px; }
+    .image-stack { height: 280px; }
+    .image-amp { width: 70%; height: 50%; top: 50%; left: -5%; }
+    .facility-section { padding: 40px 1rem; }
+    .facility-title { font-size: 2rem; margin-bottom: 1.5rem; }
+    .facility-title::before { height: 20px; top: -25px; }
+    .facility-image-container { margin-bottom: 1.5rem; border-radius: 0.75rem; }
+    .facility-description { font-size: 0.9rem; }
+    .top-divider-facility, .bottom-divider-facility { display: none; }
+    /* Layanan Kami Mobile */
+    .services-section { padding: 40px 1rem; }
+    .services-section h2 { font-size: 2em; }
+    .section-subtitle { font-size: 0.85rem; }
+    .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .service-card { padding: 25px; }
+    .service-card .icon { font-size: 2.2em; }
+    /* Fasilitas Studio Gallery Mobile */
+    .studio-facilities-gallery-section { padding: 40px 1rem; }
+    .studio-facilities-title { font-size: 2rem; margin-bottom: 0.75rem; }
+    .studio-facilities-subtitle { font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .gallery-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .gallery-item { height: 150px; font-size: 1.1rem; padding: 2rem 1rem; }
+    
+    /* Testimonials Mobile */
+    .testimonials-section { padding: 40px 1rem; }
+    .testimonials-section h2 { font-size: 2em; }
+    .testimonial-card { min-width: 280px; }
+    .reviewer-img { width: 40px; height: 40px; }
+    
+    /* Contact Mobile */
+    .contact-section { padding: 40px 1rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    
+    /* Footer Mobile */
+    .footer-content { align-items: center; }
+    .footer-info { text-align: center; }
+}
+
+/* Responsiveness for Modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .booking-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .time-slots-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    
+    .time-slot {
+        min-height: 50px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsiveness for Checkout Modal */
+@media (max-width: 768px) {
+    .checkout-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+}
+
+/* Responsiveness for About Section */
+@media (max-width: 992px) {
+    .about-flex-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .about-image-container {
+        width: 100%;
+        padding-bottom: 0;
+        padding-right: 0;
+    }
+    .image-overlay {
+        display: none;
+    }
+    .about-content {
+        text-align: center;
+        min-width: auto;
+    }
+    .about-title-wrapper {
+        justify-content: center;
+    }
+    .about-value-cards {
+        justify-content: center;
+    }
+    .value-card {
+        align-items: center;
+        text-align: center;
+    }
+}  
+@media (max-width: 992px) {
+    .about-vision-mission {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .main-studio-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .studio-image-wrapper {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .studio-content-title::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsiveness for Confirmation Page */
+@media (max-width: 768px) {
+    .confirmation-container {
+        margin: 20px auto;
+        width: 95%;
+    }
+    
+    .confirmation-header {
+        padding: 30px 20px;
+    }
+    
+    .confirmation-header h2 {
+        font-size: 2rem;
+    }
+    
+    .confirmation-content {
+        padding: 20px;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .step-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .step-number {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-secondary, .btn-primary {
+        width: 100%;
+    }
+}
+
+/* Default nav-menu (desktop) */
+.nav-menu {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  /* Mobile style */
+  @media (max-width: 768px) {
+    /* Sembunyikan menu di mobile */
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: var(--header-height, 72px); /* pakai variabel header-height kalau ada */
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+  
+      /* animasi slide */
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-in-out;
+    }
+  
+    /* Saat hamburger diklik */
+    .nav-menu.active {
+      display: flex;
+      max-height: 500px; /* cukup besar biar semua link muat */
+    }
+  
+    /* Link style */
+    .nav-menu a {
+      color: white;
+      padding: 0.75rem 0;
+      text-decoration: none;
+      font-weight: 600;
+      width: 100%;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+  
+    .nav-menu a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  
+    /* Hamburger visible only in mobile */
+    .hamburger-menu {
+      display: block;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  }
+  
+  /* Desktop: sembunyikan hamburger */
+  @media (min-width: 769px) {
+    .hamburger-menu {
+      display: none;
+    }
+  }
+  
+
+/* Login Required Modal */
+.login-required-content {
+    max-width: 500px;
+    margin: 15% auto;
+    text-align: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.login-required-icon {
+    font-size: 3rem;
+    color: var(--accent-purple);
+    margin-bottom: 20px;
+}
+
+.login-required-message {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.login-required-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#loginRequiredModal {
+    z-index: 3000;
+}
+
+/* Animasi modal muncul dari atas */
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.login-required-content {
+    animation: slideDown 0.3s ease-out;
+}
+
+
+/* Modal Detail Tiket Styles */
+.ticket-modal-content {
+    max-width: 800px;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.ticket-container {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #9333ea 0%, #1a1a1a 100%);
+    color: white;
+}
+
+.ticket-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.ticket-logo img {
+    height: 30px;
+}
+
+.ticket-id {
+    font-family: monospace;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.ticket-body {
+    display: flex;
+    padding: 30px;
+    gap: 30px;
+}
+
+.ticket-event {
+    flex: 2;
+}
+
+.ticket-event h3 {
+    color: var(--accent-orange);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.ticket-detail-row {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.ticket-detail-row .detail-label {
+    width: 100px;
+    color: #cccccc;
+    font-weight: 500;
+}
+
+.ticket-detail-row .detail-value {
+    color: white;
+    font-weight: 600;
+}
+
+.ticket-qr {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.qr-placeholder {
+    text-align: center;
+    color: #cccccc;
+}
+
+.qr-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    color: var(--accent-purple);
+}
+
+.ticket-footer {
+    padding: 20px 30px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ticket-info p {
+    color: var(--accent-orange);
+    margin-bottom: 10px;
+}
+
+.ticket-info ul {
+    color: #cccccc;
+    padding-left: 20px;
+}
+
+.ticket-info li {
+    margin-bottom: 5px;
+}
+
+.ticket-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    #ticketDetailModal, #ticketDetailModal * {
+        visibility: visible;
+    }
+    
+    #ticketDetailModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background-color: white;
+        color: black;
+    }
+    
+    .ticket-actions {
+        display: none;
+    }
+    
+    .close-ticket-modal {
+        display: none;
+    }
+    
+    .ticket-container {
+        box-shadow: none;
+        background: white;
+        color: black;
+    }
+    
+    .ticket-header {
+        background: linear-gradient(135deg, #9333ea 0%, #6d28d9 100%);
+        color: white;
+    }
+    
+    .ticket-event h3 {
+        color: #9333ea;
+    }
+    
+    .ticket-detail-row .detail-value {
+        color: black;
+    }
+    
+    .ticket-info p {
+        color: #9333ea;
+    }
+    
+    .ticket-info ul {
+        color: #333;
+    }
+}
+
+.ticket-qr {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.qr-code-container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.qr-info {
+    color: #cccccc;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+#qrcode canvas {
+    border-radius: 4px;
+}
+
+/* Print Styles untuk QR Code */
+@media print {
+    #qrcode {
+        background-color: white;
+        border: 1px solid #ddd;
+    }
+}
+
+/* Notifikasi Styles */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2d2d2d;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 300px;
+    transform: translateY(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notification-success {
+    border-left: 4px solid #4dff4d;
+}
+
+.notification-info {
+    border-left: 4px solid #2196F3;
+}
+
+.notification-error {
+    border-left: 4px solid #ff4d4d;
+}
+
+.notification-hide {
+    transform: translateY(100px);
+    opacity: 0;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-content i {
+    font-size: 1.2rem;
+}
+
+.notification-success .notification-content i {
+    color: #4dff4d;
+}
+
+.notification-info .notification-content i {
+    color: #2196F3;
+}
+
+.notification-error .notification-content i {
+    color: #ff4d4d;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: #cccccc;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.notification-close:hover {
+    color: white;
+}
+
+
